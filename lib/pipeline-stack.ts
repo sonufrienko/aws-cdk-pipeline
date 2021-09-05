@@ -20,7 +20,7 @@ export class PipelineStack extends Stack {
 
     pipeline.addStage(new AppStage(this, 'dev'));
     const prodStage = pipeline.addStage(new AppStage(this, 'prod'));
-    prodStage.addPost(new ManualApprovalStep('approval'));
+    prodStage.addPre(new ManualApprovalStep('Approval for production deployment'));
 
     // prodStage.addPost(new ShellStep("validate", {
     //   commands: ['curl -Ssf https://demo.com'],
