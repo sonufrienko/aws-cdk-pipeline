@@ -9,6 +9,7 @@ export class ApiStack extends Stack {
     new Function(this, 'LambdaFunction', {
       runtime: Runtime.NODEJS_14_X,
       handler: 'index.handler',
+      functionName: 'demoPipelineFunction',
       code: new InlineCode('exports.handler = _ => "Hello, CDK";'),
     });
   }
