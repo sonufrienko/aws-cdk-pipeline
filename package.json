@@ -2,7 +2,7 @@
   "name": "aws-cdk-pipeline",
   "version": "0.1.0",
   "bin": {
-    "aws-cdk-pipeline": "bin/aws-cdk-pipeline.js"
+    "aws-cdk-pipeline": "bin/app.js"
   },
   "scripts": {
     "build": "tsc",

@@ -9,7 +9,10 @@ export class PipelineStack extends Stack {
     const pipeline = new CodePipeline(this, 'Pipeline', {
       pipelineName: 'aws-cdk-pipeline',
       synth: new ShellStep('Synth', {
-        input: CodePipelineSource.gitHub('sonufrienko/aws-cdk-pipeline', 'main'),
+        input: CodePipelineSource.connection('sonufrienko/aws-cdk-pipeline', 'main', {
+          connectionArn:
+            'arn:aws:codestar-connections:eu-west-1:707901487254:connection/1b9cdd03-b81a-4795-9bf0-b6355753f083',
+        }),
         commands: ['npm ci', 'npm run build', 'npx cdk synth'],
       }),
     });
