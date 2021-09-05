@@ -1,6 +1,7 @@
 import { Stack, StackProps } from 'aws-cdk-lib';
-import { CodePipeline, CodePipelineSource, ShellStep } from 'aws-cdk-lib/lib/pipelines';
+import { CodePipeline, CodePipelineSource, ShellStep, ManualApprovalStep } from 'aws-cdk-lib/lib/pipelines';
 import { Construct } from 'constructs';
+import { AppStage } from './app-stage';
 
 export class PipelineStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
@@ -16,5 +17,13 @@ export class PipelineStack extends Stack {
         commands: ['npm ci', 'npm run build', 'npx cdk synth'],
       }),
     });
+
+    pipeline.addStage(new AppStage(this, 'dev'));
+    const prodStage = pipeline.addStage(new AppStage(this, 'prod'));
+    prodStage.addPost(new ManualApprovalStep('approval'));
+
+    // prodStage.addPost(new ShellStep("validate", {
+    //   commands: ['curl -Ssf https://demo.com'],
+    // }));
   }
 }
