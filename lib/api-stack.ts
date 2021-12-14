@@ -1,5 +1,5 @@
 import { Stack, StackProps } from 'aws-cdk-lib';
-import { Function, InlineCode, Runtime } from 'aws-cdk-lib/lib/aws-lambda';
+import { Function, InlineCode, Runtime } from 'aws-cdk-lib/aws-lambda';
 import { Construct } from 'constructs';
 
 export class ApiStack extends Stack {
